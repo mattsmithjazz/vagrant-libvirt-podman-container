@@ -1,0 +1,11 @@
+alias vagrant='podman run --rm -it \
+        --volume /run/libvirt:/run/libvirt \
+        --volume "${HOME}:${HOME}:rslave" \
+        --env "HOME=${HOME}" \
+	--volume /etc/exports:/etc/exports \
+        --workdir "$(pwd)" \
+        --net host \
+        --privileged \
+        --security-opt label=disable \
+        --entrypoint /usr/bin/vagrant \
+        localhost/vagrant-container:latest 2>/dev/null'
